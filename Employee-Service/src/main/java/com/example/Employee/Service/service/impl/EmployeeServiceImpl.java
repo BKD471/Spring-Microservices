@@ -7,6 +7,8 @@ import com.example.Employee.Service.service.EmployeeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -40,7 +42,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public EmployeeDto getEmployee(String email,Long id) {
-        Employee employeeEntity=employeeRepository.findByEmailOrId(email,id);
+        Optional<Employee> employeeEntity= Optional.of(Optional.ofNullable(employeeRepository.findByEmailOrId(email, id)).get());
         return mapper.map(employeeEntity,EmployeeDto.class);
     }
 }

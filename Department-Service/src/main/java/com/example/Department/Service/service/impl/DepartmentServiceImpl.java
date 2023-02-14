@@ -7,6 +7,9 @@ import com.example.Department.Service.service.DepartmentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentRepository departmentRepository;
@@ -33,7 +36,7 @@ public class DepartmentServiceImpl implements DepartmentService {
      */
     @Override
     public DepartmentDto getDepartmentByCode(String code) {
-       Department departmentEntity=departmentRepository.findByDepartmentCode(code);
+       Optional<Department> departmentEntity= Optional.of(Optional.ofNullable(departmentRepository.findByDepartmentCode(code)).get());
        return mapper.map(departmentEntity,DepartmentDto.class);
     }
 }
