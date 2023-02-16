@@ -1,5 +1,6 @@
 package com.example.Employee.Service.controller;
 
+import com.example.Employee.Service.dto.ApiResponseDto;
 import com.example.Employee.Service.dto.EmployeeDto;
 import com.example.Employee.Service.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -24,9 +25,9 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public  ResponseEntity<EmployeeDto> fetchEmployee(@Valid @RequestParam(required = false) String email,
-                                                      @RequestParam(required = false) Long id){
-        EmployeeDto fetchedEmployee=employeeService.getEmployee(email,id);
+    public  ResponseEntity<ApiResponseDto> fetchEmployee(@Valid @RequestParam(required = false) String email,
+                                                         @RequestParam(required = false) Long id){
+        ApiResponseDto fetchedEmployee=employeeService.getEmployee(email,id);
         return new ResponseEntity<>(fetchedEmployee,HttpStatus.OK);
     }
 }

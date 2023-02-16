@@ -12,8 +12,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Department-Service" target="17" />
-      <module name="Employee-Service" target="17" />
+      <module name="Department-Service" target="19" />
+      <module name="Employee-Service" target="19" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

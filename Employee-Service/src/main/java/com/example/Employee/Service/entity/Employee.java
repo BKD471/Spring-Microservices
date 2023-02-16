@@ -26,4 +26,5 @@ public class Employee {
     @Email(message = "please provide a valid email")
     @Column(nullable = false,unique = true)
     private String email;
+    private String departmentCode;
 }
