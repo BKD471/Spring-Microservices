@@ -8,18 +8,21 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Department-Service" />
+        <module name="service-registry" />
         <module name="Employee-Service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Department-Service" target="19" />
       <module name="Employee-Service" target="19" />
+      <module name="service-registry" target="19" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Department-Service" options="-parameters" />
       <module name="Employee-Service" options="-parameters" />
+      <module name="service-registry" options="-parameters" />
     </option>
   </component>
 </project>
