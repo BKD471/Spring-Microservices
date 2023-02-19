@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Department-Service/Department-Service.iml" filepath="$PROJECT_DIR$/Department-Service/Department-Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/Employee-Service/Employee-Service.iml" filepath="$PROJECT_DIR$/Employee-Service/Employee-Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Spring Microservices.iml" filepath="$PROJECT_DIR$/.idea/Spring Microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-registry/service-registry.iml" filepath="$PROJECT_DIR$/service-registry/service-registry.iml" />
     </modules>
   </component>
