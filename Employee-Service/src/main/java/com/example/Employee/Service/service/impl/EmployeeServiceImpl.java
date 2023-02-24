@@ -7,6 +7,8 @@ import com.example.Employee.Service.entity.Employee;
 import com.example.Employee.Service.repository.EmployeeRepository;
 import com.example.Employee.Service.service.ApiClient;
 import com.example.Employee.Service.service.EmployeeService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -52,6 +54,8 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param email
      * @return
      */
+    //"${spring.application.name}"
+    @CircuitBreaker(name="EMPLOYEE-SERVICE",fallbackMethod = "getDefaultDepartment")
     @Override
     public ApiResponseDto getEmployee(String email, Long id) {
         //Fetch employee & convert it to Dto
@@ -71,6 +75,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         //Fetch corresponding department by FeignClient
         DepartmentDto departmentDto=apiClient.getDepartmentByCode(employeeDto.getDepartmentCode());
+
+
+        //Form a response
+        ApiResponseDto apiResponseDto = new ApiResponseDto();
+        apiResponseDto.setEmployee(employeeDto);
+        apiResponseDto.setDepartment(departmentDto);
+
+        return apiResponseDto;
+    }
+
+    public ApiResponseDto getDefaultDepartment(String email, Long id,Exception exception){
+        Optional<Employee> employeeEntity = Optional.of(Optional.ofNullable(employeeRepository.findByEmailOrId(email, id)).get());
+        EmployeeDto employeeDto = mapper.map(employeeEntity, EmployeeDto.class);
+
+        DepartmentDto departmentDto=new DepartmentDto();
+        departmentDto.setDepartmentName("Analytics Department");
+        departmentDto.setDepartmentCode("AD101");
+        departmentDto.setDepartmentDescription("This is analytics department");
 
 
         //Form a response
