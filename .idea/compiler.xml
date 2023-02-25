@@ -10,6 +10,7 @@
         <module name="api-gateway" />
         <module name="Department-Service" />
         <module name="config-server" />
+        <module name="organization-service" />
         <module name="Employee-Service" />
         <module name="service-registry" />
       </profile>
@@ -19,6 +20,7 @@
       <module name="config-server" target="19" />
       <module name="Department-Service" target="19" />
       <module name="Employee-Service" target="19" />
+      <module name="organization-service" target="19" />
       <module name="service-registry" target="19" />
     </bytecodeTargetLevel>
   </component>
@@ -28,6 +30,7 @@
       <module name="Employee-Service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="config-server" options="-parameters" />
+      <module name="organization-service" options="-parameters" />
       <module name="service-registry" options="-parameters" />
     </option>
   </component>

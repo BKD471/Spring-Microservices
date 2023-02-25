@@ -4,6 +4,7 @@ import com.example.Employee.Service.dto.ApiResponseDto;
 import com.example.Employee.Service.dto.DepartmentDto;
 import com.example.Employee.Service.dto.EmployeeDto;
 import com.example.Employee.Service.entity.Employee;
+import com.example.Employee.Service.mapper.EmployeeMapper;
 import com.example.Employee.Service.repository.EmployeeRepository;
 import com.example.Employee.Service.service.ApiClient;
 import com.example.Employee.Service.service.EmployeeService;
@@ -43,11 +44,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDto saveEmployee(EmployeeDto employeeDto) {
         //convert dto to Entity
-        Employee employeeEntity = mapper.map(employeeDto, Employee.class);
+        Employee employeeEntity = EmployeeMapper.mapToEmployee(employeeDto);
         //save entity to db
         Employee savedEmployee = employeeRepository.save(employeeEntity);
         //convert entity to dto
-        return mapper.map(savedEmployee, EmployeeDto.class);
+        return EmployeeMapper.mapToEmployeeDto(savedEmployee);
     }
 
     /**
@@ -60,7 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public ApiResponseDto getEmployee(String email, Long id) {
         //Fetch employee & convert it to Dto
         Optional<Employee> employeeEntity = Optional.of(Optional.ofNullable(employeeRepository.findByEmailOrId(email, id)).get());
-        EmployeeDto employeeDto = mapper.map(employeeEntity, EmployeeDto.class);
+        EmployeeDto employeeDto = EmployeeMapper.mapToEmployeeDto(employeeEntity.get());
 
         //Fetch corresponding department by rest-template
         //ResponseEntity<DepartmentDto> response=restTemplate.getForEntity("http://localhost:8080/api/departments/"+employeeEntity.get().getDepartmentCode(),DepartmentDto.class);
@@ -87,7 +88,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public ApiResponseDto getDefaultDepartment(String email, Long id,Exception exception){
         Optional<Employee> employeeEntity = Optional.of(Optional.ofNullable(employeeRepository.findByEmailOrId(email, id)).get());
-        EmployeeDto employeeDto = mapper.map(employeeEntity, EmployeeDto.class);
+        EmployeeDto employeeDto = EmployeeMapper.mapToEmployeeDto(employeeEntity.get());
 
         DepartmentDto departmentDto=new DepartmentDto();
         departmentDto.setDepartmentName("Analytics Department");
