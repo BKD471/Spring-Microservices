@@ -9,14 +9,16 @@ public class EmployeeMapper {
         Employee employee=new Employee(employeeDto.getId(),
                 employeeDto.getFirstName(),
                 employeeDto.getLastName(),
-                employeeDto.getEmail(), employeeDto.getDepartmentCode());
+                employeeDto.getEmail(), employeeDto.getDepartmentCode(),
+                employeeDto.getOrganizationCode());
         return employee;
     }
 
     public static EmployeeDto mapToEmployeeDto(Employee employee){
         EmployeeDto employeeDto=new EmployeeDto(employee.getId(),
                 employee.getFirstName(),
-                employee.getLastName(), employee.getEmail(), employee.getDepartmentCode());
+                employee.getLastName(), employee.getEmail(),
+                employee.getDepartmentCode(), employee.getOrganizationCode());
         return employeeDto;
     }
 }

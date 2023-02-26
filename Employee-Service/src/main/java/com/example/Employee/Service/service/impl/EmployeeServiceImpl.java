@@ -3,6 +3,7 @@ package com.example.Employee.Service.service.impl;
 import com.example.Employee.Service.dto.ApiResponseDto;
 import com.example.Employee.Service.dto.DepartmentDto;
 import com.example.Employee.Service.dto.EmployeeDto;
+import com.example.Employee.Service.dto.OrganizationDto;
 import com.example.Employee.Service.entity.Employee;
 import com.example.Employee.Service.mapper.EmployeeMapper;
 import com.example.Employee.Service.repository.EmployeeRepository;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import java.util.Optional;
+
+import static com.example.Employee.Service.constants.UriConstants.FETCH_ORGANIZATION;
 
 
 @Service
@@ -77,11 +80,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         //Fetch corresponding department by FeignClient
         DepartmentDto departmentDto=apiClient.getDepartmentByCode(employeeDto.getDepartmentCode());
 
+        //Fetch Corresponding Organization
+        OrganizationDto organizationDto=webClient.get().
+                uri(FETCH_ORGANIZATION+employeeDto.getOrganizationCode()).retrieve()
+                .bodyToMono(OrganizationDto.class).block();
 
         //Form a response
         ApiResponseDto apiResponseDto = new ApiResponseDto();
         apiResponseDto.setEmployee(employeeDto);
         apiResponseDto.setDepartment(departmentDto);
+        apiResponseDto.setOrganization(organizationDto);
 
         return apiResponseDto;
     }
@@ -96,10 +104,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         departmentDto.setDepartmentDescription("This is analytics department");
 
 
+        OrganizationDto organizationDto=new OrganizationDto();
+        organizationDto.setOrganizationName("TCS");
+        organizationDto.setOrganizationCode("T101");
+        organizationDto.setOrganizationDescription("Tcs hay bro");
+
+
+
         //Form a response
         ApiResponseDto apiResponseDto = new ApiResponseDto();
         apiResponseDto.setEmployee(employeeDto);
         apiResponseDto.setDepartment(departmentDto);
+        apiResponseDto.setOrganization(organizationDto);
 
         return apiResponseDto;
     }

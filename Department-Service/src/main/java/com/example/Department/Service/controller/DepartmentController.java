@@ -18,7 +18,7 @@ public class DepartmentController {
         this.mapper=new ModelMapper();
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<DepartmentDto> saveDepartment(@RequestBody DepartmentDto departmentDto){
       DepartmentDto savedDepartmentDto=departmentService.saveDepartment(departmentDto);
       return new  ResponseEntity<>(savedDepartmentDto, HttpStatus.CREATED);
