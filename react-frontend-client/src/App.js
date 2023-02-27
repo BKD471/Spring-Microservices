@@ -1,5 +1,5 @@
 import './App.css';
-import EmployeeComponent from './components/EmployeeComponent';
+import EmployeeComponent from './components/BioDataComponent';
 
 function App() {
   return (
