@@ -9,7 +9,7 @@ const EmployeeComponent=()=>{
     const [organization,setOrganization]=useState({});
 
 
-    const getEmployee=async ()=>{
+    const getEmployeeData=async ()=>{
       const data=await fetch(EMPLOYEE_SERVICE_BASE_URL+EMPLOYEE_ID+2);
       const fetchedData=await data.json();
       setEmployee(fetchedData.employee);
@@ -19,7 +19,7 @@ const EmployeeComponent=()=>{
     }
 
     useEffect( ()=>{
-      getEmployee();       
+      getEmployeeData();       
     },[])
 
 
