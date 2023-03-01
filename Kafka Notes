@@ -1,0 +1,64 @@
+Some basic notes about Kafka
+
+Kafka is a distributed system, so it has clusters
+Hence it is fault tolerant, if one goes down then it doesnt matter.
+
+A kafka cluster consist of set of brokers. A cluster must have minimum three brokers.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Kafka Broker
+
+In simple terms,the broker is kafka server. This name is because of the fact that
+kafka servers acts as  message brokers between producer and consumers.
+
+The producer and consumer dont interact directly.They use kafka server as an agent to communicate.
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+Producer & Consumer
+
+Its any application that sends message directly to Kafka.
+Just think there are two microservices A, B  talking with each other asynchronously,
+A sends some message to kafka so A is Producer and B gets the message from broker so its Consumer.
+
+Only condition B must have permissions to get the data from broker.
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Kafka Topic
+
+Producer send data to broker, consumer request that data from broker.There should
+be an identifying mechanism to request data from a broker.
+
+Topic is like a table in database or folder in file system
+Topic is identified by name
+have any no of topics
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Kafka Partitions
+
+kafka topics are divided into number of partitions , which contain records in
+unchangeable seq
+
+Kf brokers will store msgs for topics.But the capacity of data can be enormous and it
+may not be possible to store in a single computer.Therefore it will be partitioned into
+multiple parts and distributed among multiple computers,since kafka is a distributed system.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Kafka Offsets
+
+offset is a seq of ids given to messages as the arrive at the partition.Once offset is assigned
+it will never be changed.The first message gets an offset 0.the next msg receives an offset 1.....continues.
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Kafka Consumer Group
+
+A consumer group contains one or more consumers working together to process messages.
