@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React, { useEffect,useState } from 'react';
 import {EMPLOYEE_SERVICE_BASE_URL,EMPLOYEE_ID} from "../configs/Constants"
 import DepartmentComponent from './DepartmentComponent';
